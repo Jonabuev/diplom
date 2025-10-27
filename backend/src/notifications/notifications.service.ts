@@ -13,7 +13,8 @@ export class NotificationsService {
   async create(createNotificationDto: any): Promise<Notification> {
     const notification =
       this.notificationsRepository.create(createNotificationDto);
-    return this.notificationsRepository.save(notification);
+    const savedNotification = await this.notificationsRepository.save(notification);
+    return savedNotification;
   }
 
   async findByUser(userId: string): Promise<Notification[]> {
