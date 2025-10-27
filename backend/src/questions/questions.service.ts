@@ -14,8 +14,7 @@ export class QuestionsService {
 
   async create(createQuestionDto: any): Promise<Question> {
     const question = this.questionsRepository.create(createQuestionDto);
-    const savedQuestion = await this.questionsRepository.save(question);
-    return savedQuestion;
+    return await this.questionsRepository.save(question) as Question;
   }
 
   async findAll(): Promise<Question[]> {
