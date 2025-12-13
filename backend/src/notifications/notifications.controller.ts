@@ -12,6 +12,7 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { NotificationsService } from './notifications.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CreateNotificationDto } from './dto/create-notification.dto';
 
 @ApiTags('notifications')
 @Controller('notifications')
@@ -22,7 +23,7 @@ export class NotificationsController {
 
   @Post()
   @ApiOperation({ summary: 'Create a notification' })
-  create(@Body() createNotificationDto: any) {
+  create(@Body() createNotificationDto: CreateNotificationDto) {
     return this.notificationsService.create(createNotificationDto);
   }
 

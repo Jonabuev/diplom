@@ -12,6 +12,7 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { HistoryService } from './history.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AddAnswerDto } from './dto/add-answer.dto';
 
 @ApiTags('history')
 @Controller('history')
@@ -52,16 +53,7 @@ export class HistoryController {
 
   @Post('answer')
   @ApiOperation({ summary: 'Record user answer' })
-  addAnswer(
-    @Request() req,
-    @Body()
-    body: {
-      bookId: string;
-      questionId: string;
-      userAnswer: string;
-      isCorrect: boolean;
-    },
-  ) {
+  addAnswer(@Request() req, @Body() body: AddAnswerDto) {
     return this.historyService.addAnswer(
       req.user.userId,
       body.bookId,

@@ -105,6 +105,12 @@ export default function Profile() {
                 <div className="bg-pink-500 px-4 py-2 rounded-lg">
                   <span className="text-white font-semibold">{user?.role}</span>
                 </div>
+                <Link
+                  href="/achievements"
+                  className="bg-yellow-500 px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
+                >
+                  <span className="text-white font-semibold">🏆 Достижения</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -112,30 +118,41 @@ export default function Profile() {
 
         {/* Statistics */}
         {statistics && (
-          <div className="grid md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-              <div className="text-3xl font-bold text-white mb-2">
-                {statistics.totalQuestions}
-              </div>
-              <div className="text-purple-100">Всего вопросов</div>
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-3xl font-bold text-white">Статистика</h2>
+              <Link
+                href="/history"
+                className="bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-600 transition"
+              >
+                📊 Подробная история
+              </Link>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-              <div className="text-3xl font-bold text-green-300 mb-2">
-                {statistics.correctAnswers}
+            <div className="grid md:grid-cols-4 gap-6 mb-8">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                <div className="text-3xl font-bold text-white mb-2">
+                  {statistics.totalQuestions}
+                </div>
+                <div className="text-purple-100">Всего вопросов</div>
               </div>
-              <div className="text-purple-100">Правильных ответов</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-              <div className="text-3xl font-bold text-red-300 mb-2">
-                {statistics.incorrectAnswers}
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                <div className="text-3xl font-bold text-green-300 mb-2">
+                  {statistics.correctAnswers}
+                </div>
+                <div className="text-purple-100">Правильных ответов</div>
               </div>
-              <div className="text-purple-100">Неправильных ответов</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-              <div className="text-3xl font-bold text-yellow-300 mb-2">
-                {statistics.accuracy}%
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                <div className="text-3xl font-bold text-red-300 mb-2">
+                  {statistics.incorrectAnswers}
+                </div>
+                <div className="text-purple-100">Неправильных ответов</div>
               </div>
-              <div className="text-purple-100">Точность</div>
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                <div className="text-3xl font-bold text-yellow-300 mb-2">
+                  {statistics.accuracy}%
+                </div>
+                <div className="text-purple-100">Точность</div>
+              </div>
             </div>
           </div>
         )}

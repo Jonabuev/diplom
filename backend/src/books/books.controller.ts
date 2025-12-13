@@ -12,6 +12,8 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { BooksService } from './books.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CreateBookDto } from './dto/create-book.dto';
+import { CreateChapterDto } from './dto/create-chapter.dto';
 
 @ApiTags('books')
 @Controller('books')
@@ -22,7 +24,7 @@ export class BooksController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new book' })
-  create(@Body() createBookDto: any) {
+  create(@Body() createBookDto: CreateBookDto) {
     return this.booksService.create(createBookDto);
   }
 
@@ -70,7 +72,7 @@ export class BooksController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Add chapter to book' })
-  addChapter(@Param('id') id: string, @Body() chapter: any) {
+  addChapter(@Param('id') id: string, @Body() chapter: CreateChapterDto) {
     return this.booksService.addChapter(id, chapter);
   }
 
@@ -100,6 +102,16 @@ export class BooksController {
   @ApiOperation({ summary: 'Toggle book public status' })
   togglePublic(@Param('id') id: string) {
     return this.booksService.togglePublic(id);
+  }
+
+  @Get('my-books')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get books created by current user' })
+  getMyBooks() {
+    // TODO: Implement this method to get books by current user
+    // For now, return all books
+    return this.booksService.findAll();
   }
 
   @Delete(':id')

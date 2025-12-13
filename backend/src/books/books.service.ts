@@ -11,8 +11,11 @@ export class BooksService {
   ) {}
 
   async create(createBookDto: any): Promise<Book> {
-    const book = this.booksRepository.create(createBookDto);
-    return await this.booksRepository.save(book) as unknown as Book;
+    const book = this.booksRepository.create({
+      ...createBookDto,
+      chapters: createBookDto.chapters || [],
+    });
+    return (await this.booksRepository.save(book)) as unknown as Book;
   }
 
   async findAll(): Promise<Book[]> {
@@ -60,6 +63,12 @@ export class BooksService {
   ): Promise<Book> {
     const book = await this.findOne(bookId);
     const chapterId = `chapter-${Date.now()}`;
+    
+    // Инициализируем массив, если он не существует
+    if (!book.chapters) {
+      book.chapters = [];
+    }
+    
     book.chapters.push({
       id: chapterId,
       ...chapter,

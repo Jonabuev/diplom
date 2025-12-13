@@ -71,6 +71,8 @@ export const booksAPI = {
     api.post(`/books/${bookId}/chapters`, data),
   updateChapter: (bookId: string, chapterId: string, data: any) =>
     api.patch(`/books/${bookId}/chapters/${chapterId}`, data),
+  deleteChapter: (bookId: string, chapterId: string) =>
+    api.delete(`/books/${bookId}/chapters/${chapterId}`),
   togglePublic: (id: string) => api.patch(`/books/${id}/toggle-public`),
 };
 

@@ -191,12 +191,22 @@ export default function BookPage() {
 
                 {/* Generate Questions Button */}
                 {isLoggedIn && (
-                  <button
-                    onClick={handleGenerateQuestions}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition mb-6"
-                  >
-                    🤖 Сгенерировать вопросы
-                  </button>
+                  <div className="flex gap-4 mb-6">
+                    <button
+                      onClick={handleGenerateQuestions}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition"
+                    >
+                      🤖 Сгенерировать вопросы
+                    </button>
+                    {questions.length > 0 && (
+                      <Link
+                        href={`/quiz/${id}/${selectedChapter.id}`}
+                        className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
+                      >
+                        📝 Пройти тест
+                      </Link>
+                    )}
+                  </div>
                 )}
 
                 {/* Questions */}

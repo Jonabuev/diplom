@@ -12,6 +12,7 @@ import {
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { QuestionsService } from './questions.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CreateQuestionDto } from './dto/create-question.dto';
 
 @ApiTags('questions')
 @Controller('questions')
@@ -22,7 +23,7 @@ export class QuestionsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new question' })
-  create(@Body() createQuestionDto: any) {
+  create(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionsService.create(createQuestionDto);
   }
 
